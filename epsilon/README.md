@@ -1,7 +1,7 @@
 ## AutoFeed System: Epsilon
 
 * **Budget:** $450 - 500
-* **Capacity:** 10 gallons
+* **Capacity:** 10-11 gallons
 * **Base Controller:** Raspberry Pi 4B
 
 ---
@@ -16,6 +16,26 @@ The system provides an automated reservoir that dispenses a solution through a 3
 need to implement the "final feet" of irrigation from the reservoir outlet to their garden.
 
 **System is compatible with [DIYAutoFeed Controller](https://github.com/StarlightAutomation/autofeed-backend)**
+
+#### Table of Contents
+1. [Item List](#item-list)
+   1. [Component List](#component-list)
+      1. [Reservoir](#reservoir)
+      2. [Control Box](#control-box)
+2. [Software Setup](#software-setup)
+3. [Module Wiring Diagrams](#module-wiring-diagrams)
+   1. [Power Plug](#power-plug)
+   2. [AC/AC Transformer](#acac-transformer)
+   3. [12v Regulator and Step-Down Converter](#12v-regulator-and-step-down-converter)
+      1. [12v Regulator](#12vdc-regulator)
+      2. [Step-Down Converter](#step-down-converter)
+      3. [Combining these Modules](#combining-these-modules)
+   4. [Buck Converter](#buck-converter)
+4. [Building the Control Box](#building-the-control-box)
+   1. [Full Wiring Diagram](#full-wiring-diagram)
+   2. [Raspberry Pi/Relay](#raspberry-pi--relay)
+   3. [Finishing the Control Box](#finishing-the-control-box)
+5. [Building the Reservoir](#building-the-reservoir)
 
 ---
 
@@ -314,8 +334,38 @@ will work. Connect the 5V pin to the relay DC+, and the GND pin to the relay DC-
 ## Finishing the Control Box
 The control box is now complete. All you need to do now is connect each plug - A, B, C, and D. You can test
 the control box by plugging an AC power cable into your power connector and flipping the switch. There should
-be lights on 3 components within the control box:
+be lights on 4 components within the control box:
 
 1. Raspberry Pi - should have the red LED and flashing green LED
 2. 12v Regulator - should have a solid red LED
 3. Buck Converter - should have a solid red LED
+4. Relay Module - should have a solid green LED
+
+# Building the Reservoir
+
+Ultimately, the reservoir design is up to you as the user. The design will probably vary slightly based on your
+specific needs. The control box will work for pretty much any reservoir design, as long as that reservoir implements
+the following devices:
+
+1. 120VAC Grounded Egress Pump (in this tutorial, a Vivosun 850GPH pump)
+2. 120VAC Grounded Stir Pump (in this tutorial, a 550GPH aquarium pump)
+3. 120VAC Non-Grounded Air Pump (in this tutorial, an aquarium air pump)
+4. 12VDC Electronic Solenoid Valve (in this tutorial, a US Solid solenoid valve)
+
+You will find some pictures and short explanations below, these are of my personal reservoir implementation. This
+design holds 11 gallons total, with a "splash guard plate" that the pump lines/tubes run through and that the air
+pump itself actually sits on. The control box is screwed to the top of the trash can lid.
+
+The Egress Pump sits generally in the center, with the outlet port located roughly in the center/offset towards the
+back of the can slightly. The outlet port gets a 3/4" soft line attached, which is then run into a PEX 3/4" tube. This
+first PEX tube penetrates the splash guard plate. I drilled the plate with a 1" hole bit.
+
+To build the splash guard plate, take the lid of the trash can and place it on one of the ABS plastic sheets. Trace
+along the _inside_ of the lid onto the plastic sheet to come up with an outline of the opening in the trash can. Next,
+cut the plastic sheet along the trace you've made. You may need to continue to trim small pieces off of the plate once
+your initial cut is complete.
+
+The splash guard plate should sit ~3-4 inches into the can. This is enough space for the air pump to sit on the splash
+guard and enough space to work with the egress pex pipe and the stir pump tubing. As you can see from the photos below,
+I used ABS plastic strips to create "tabs" to hold the splash guard plate in place. It bows slightly towards the center,
+but still works fine and doesn't get wet on top.
